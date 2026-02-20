@@ -1,5 +1,5 @@
-using System.Collections.ObjectModel;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
+using System.Collections.Generic;
 
 namespace AvaloniaApplication1;
 
@@ -11,13 +11,27 @@ public partial class MainWindow : Window
 
         Items =
         [
-            new ItemViewModel("111"),
-            new ItemViewModel("222"),
-            new ItemViewModel("333"),
+            new("1",
+            [
+                new("1.1"),
+                new("1.2"),
+                new("1.3")
+            ]),
+            new("2",
+            [
+                new("2.1"),
+                new("2.2"),
+                new("2.3")
+            ])
         ];
-        
+
         DataContext = this;
     }
 
-    public ObservableCollection<ItemViewModel> Items { get; }
+    public List<TreeItemViewModel> Items { get; }
+
+    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Items[1].IsExpanded = !Items[1].IsExpanded;
+    }
 }
