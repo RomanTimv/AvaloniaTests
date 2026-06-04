@@ -1,0 +1,31 @@
+<Window x:Class="AvaloniaApplication1.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mxtl="https://schemas.eremexcontrols.net/avalonia/treelist"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication1"
+        Width="400">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto *">
+        <Button Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                Content="Change icon" Command="{Binding ChangeIconCommand}" />
+
+        <mxtl:TreeViewControl Grid.Row="1"
+                              ItemsSource="{Binding Items}" FocusedItem="{Binding SelectedItem}"
+                              DataFieldName="Name" ShowNodeImages="True" NodeImageFieldName="Image"
+                              ChildrenFieldName="Items" HasChildrenFieldName="HasItems" AutoExpandAllNodes="True" />
+        
+    </Grid>
+
+</Window>
